@@ -37,13 +37,13 @@ public class WhiskyRepositoryImpl implements WhiskyRepositoryCustom {
     }
 
     @Transactional
-    public List<Whisky> findByDistilleryAndAge(int distillery, int age){
+    public List<Whisky> findByDistilleryAndAge(Long distillery, int age){
         List<Whisky> result = null;
         Session session = entityManager.unwrap(Session.class);
 
         Criteria cr = session.createCriteria(Whisky.class);
 
-        cr.createAlias("distilleries", "distilleryAlias");
+        cr.createAlias("distillery", "distilleryAlias");
         cr.add(Restrictions.eq("distilleryAlias.id", distillery));
         cr.add(Restrictions.eq("age", age));
 

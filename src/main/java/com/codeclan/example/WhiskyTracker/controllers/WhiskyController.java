@@ -23,7 +23,12 @@ public class WhiskyController {
     }
 
     @GetMapping(value = "search/findByDistilleryAndAge")
-    public List<Whisky> findByDistilleryAndAge(int distillery, int age){
+    public List<Whisky> findByDistilleryAndAge(@RequestParam Long distillery, int age){
         return whiskyRepository.findByDistilleryAndAge(distillery,age);
+    }
+
+    @GetMapping(value = "search/findByRegion")
+    public List<Whisky> findWhiskysByRegion(@RequestParam String region){
+        return whiskyRepository.findWhiskysByRegion(region);
     }
 }
